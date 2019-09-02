@@ -1,0 +1,37 @@
+:root {
+  /* basic colors */
+  --yo-color-light: #fff;
+  --yo-color-primary: #ff7f00;
+  --yo-color-secondary: #1b98e0;
+  --yo-color-success: #37af79;
+  --yo-color-danger: #ff1654;
+  --yo-color-default: #333;
+  /*base font-size*/
+  --yo-base-font-size: 16;
+  /* indexs level*/
+  --yo-index-layer: 9999;
+  --yo-index-mask: 999;
+  --yo-index-nav: 99;
+  --yo-index-flow: 9;
+}
+
+:root {
+  /* buttons type */
+  --yo-general-color-schemes: primary, secondary, success, danger, default;
+  /*generate colors for button schemes*/
+  @each $scheme in (var(--yo-general-color-schemes)) {
+  /* button line's hover color */
+  --yo-color-$(scheme)-hover: color-mod(var(--yo-color-$(scheme)) a(0.15));
+  @if $scheme == 'default' {
+    --yo-color-$(scheme)-border: color-mod(var(--yo-color-$(scheme)) lightness(75%));
+    --yo-general-$(scheme): background(color-mod(var(--yo-color-$(scheme)) lightness(75%)));
+    --yo-general-$(scheme)-hover: background(color-mod(var(--yo-color-$(scheme)) lightness(75%) contrast(110%)));
+  } @else {
+      --yo-color-$(scheme)-border: var(--yo-color-$(scheme));
+      /* button flat's background-color */
+      --yo-general-$(scheme): background(var(--yo-color-$(scheme)));
+      /* button flat hover's background-color */
+      --yo-general-$(scheme)-hover: background(color-mod(var(--yo-color-$(scheme)) contrast(110%)));
+    }
+  }
+}

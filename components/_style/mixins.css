@@ -1,0 +1,71 @@
+@define-mixin hairline $borderType, $borderStyle, $borderColor: currentColor, $className: hairline {
+  /*fallback hairline*/
+  $(borderType): 1px $(borderStyle) $(borderColor);
+
+  [data-dpr='iOS@2'] .$(className)& {
+    border-width: calc(1px / 2);
+  }
+
+  [data-dpr='iOS@3'] .$(className)& {
+    border-width: calc(1px * 414 / 1080);
+  }
+
+  [data-dpr^='Adr'] .$(className)& {
+    position: relative;
+    $(borderType): 1px $(borderStyle) transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+      box-sizing: border-box;
+      $(borderType): 1px $(borderStyle) $borderColor;
+    }
+  }
+
+  [data-dpr='Adr@2'] .$(className)& {
+    &::after {
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5, 0.5) translate3d(-50%, -50%, 0);
+    }
+  }
+
+  [data-dpr='Adr@3'] .$(className)& {
+    &::after {
+      width: 300%;
+      height: 300%;
+      transform: scale(0.33333, 0.33333) translate3d(-100%, -100%, 0);
+    }
+  }
+}
+
+@define-mixin hairline-border-radius $borderRadius: 0, $className: hairline {
+  [data-dpr='Adr@2'] .$(className)& {
+    &::after {
+      @if $borderRadius != 0 {
+        border-radius: calc($(borderRadius) * 2);
+      }
+    }
+  }
+  [data-dpr='Adr@3'] .$(className)& {
+    &::after {
+      @if $borderRadius != 0 {
+        border-radius: calc($(borderRadius) * 3);
+      }
+    }
+  }
+}
+
+@define-mixin hairline-border-color $borderColor: currentColor, $className: hairline {
+  [data-dpr^='Adr'] .$(className)& {
+    &::after {
+      border-color: $borderColor;
+    }
+  }
+}
