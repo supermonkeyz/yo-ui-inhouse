@@ -27,6 +27,7 @@ jobs:
   guide-deploy:
     docker:
       - image: circleci/node:10
+    working_directory: ~/yo-ui
     steps:
       - checkout
       - attach_workspace:
@@ -49,7 +50,7 @@ jobs:
             - "1f:f7:96:19:03:2f:8e:f3:82:e6:e5:b6:0b:1c:2d:be"
       - run:
           name: Deploy docs to gh-pages branch
-          command: npx gh-pages --dotfiles --message "[skip ci] Updates" -d /home/circleci/yo-ui/styleguide
+          command: npx gh-pages --dotfiles --message "[skip ci] Updates" -d styleguide
 
 
 workflows:
