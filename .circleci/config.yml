@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:10
     working_directory: ~/yo-ui
     steps:
-      - checkout # special step to check out source code to working directory
+      - checkout
       - attach_workspace:
           at: ~/yo-ui
       - restore_cache:

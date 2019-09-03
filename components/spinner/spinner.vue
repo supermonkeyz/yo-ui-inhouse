@@ -11,6 +11,10 @@ export default {
   name: 'yo-spinner',
   components: { iOS, Android, Windows },
   props: {
+    /**
+     * The type of the spinner.
+     * `Options: iOS, Android, Windows`
+     */
     type: {
       type: String,
       default: 'iOS'
