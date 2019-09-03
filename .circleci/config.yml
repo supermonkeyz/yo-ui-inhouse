@@ -29,7 +29,7 @@ jobs:
             git config user.name "supermonkeyz"
       - add_ssh_keys:
           fingerprints:
-            - "rCg0CkFz4ARGDaOWUkoVc09kqFDcAAhFksgPru20K1I"
+            - "1f:f7:96:19:03:2f:8e:f3:82:e6:e5:b6:0b:1c:2d:be"
       - run:
           name: Deploy docs to gh-pages branch
           command: npx gh-pages --dotfiles --message "[skip ci] Updates" -d styleguide
