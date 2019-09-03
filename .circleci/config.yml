@@ -17,19 +17,22 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Run styleguide
-          command: yarn styleguide:build
+          command: |
+            yarn styleguide:build
+            cp -r styleguide temp/styleguide
       - persist_to_workspace:
-          root: styleguide
+          root: temp
+          paths: styleguide
   guide-deploy:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - attach_workspace:
-          at: styleguide
+          at: temp/styleguide
       - run:
           name: Disable jekyll builds
-          command: touch styleguide/.nojekyll
+          command: touch temp/styleguide/.nojekyll
       - run:
           name: Install and configure dependencies
           command: |
