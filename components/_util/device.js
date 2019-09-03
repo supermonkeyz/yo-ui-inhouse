@@ -77,7 +77,6 @@ class Device {
   setViewport() {
     let viewport = document.querySelector('meta[name="viewport"]');
     if (viewport && this.os.os === 'iOS') {
-      console.log('work');
       viewport.content += ',viewport-fit=cover';
     }
   }

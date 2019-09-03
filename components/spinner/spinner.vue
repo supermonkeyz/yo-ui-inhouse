@@ -21,9 +21,6 @@ export default {
     spinnerColor() {
       return { color: this.color };
     }
-  },
-  mounted() {
-    console.log(this.spinnerColor);
   }
 };
 </script>
