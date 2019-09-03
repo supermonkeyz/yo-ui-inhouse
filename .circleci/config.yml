@@ -39,7 +39,7 @@ jobs:
             - "5c:2e:05:c5:fb:b6:46:78:07:f6:5e:8a:b9:98:15:ec"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist styleguide
+          command: npx gh-pages --dotfiles --message "[skip ci] Updates" --dist styleguide
 
 
 workflows:
