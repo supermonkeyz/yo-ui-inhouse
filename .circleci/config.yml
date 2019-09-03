@@ -19,9 +19,9 @@ jobs:
           name: Run styleguide
           command: yarn styleguide:build
       - persist_to_workspace:
-            root: .
+            root: /home/circleci/project
             paths:
-                - .
+                - styleguide
   guide-deploy:
     docker:
       - image: circleci/node:10
