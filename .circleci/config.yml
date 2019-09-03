@@ -39,7 +39,7 @@ workflows:
   version: 2
   build:
     jobs:
-      - guide-build
-      - filters:
-            branches:
-              only: master
+      - guide-build:
+        filters:
+          branches:
+            only: master
