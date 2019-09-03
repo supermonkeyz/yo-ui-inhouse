@@ -18,16 +18,9 @@ jobs:
       - run:
           name: Run styleguide
           command: yarn styleguide:build
-  guide-deploy:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - attach_workspace:
-          at: styleguide
       - run:
           name: Disable jekyll builds
-          command: touch .nojekyll
+          command: touch styleguide/.nojekyll
       - run:
           name: Install and configure dependencies
           command: |
@@ -47,9 +40,6 @@ workflows:
   build:
     jobs:
       - guide-build
-      - guide-deploy:
-          requires:
-            - guide-build
-          filters:
+      - filters:
             branches:
               only: master
