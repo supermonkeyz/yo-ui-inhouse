@@ -3,8 +3,11 @@ jobs:
   guide-build:
     docker:
       - image: circleci/node:10
+    working_directory: ~/yo-ui
     steps:
       - checkout # special step to check out source code to working directory
+      - attach_workspace:
+          at: ~/yo-ui
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -19,17 +22,18 @@ jobs:
           name: Run styleguide
           command: yarn styleguide:build
       - persist_to_workspace:
-            root: /home/circleci/project
-            paths:
-                - styleguide
+          root: .
+          paths: styleguide
   guide-deploy:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/yo-ui
       - run:
           name: Disable jekyll builds
-          command: touch styleguide/.nojekyll
+          command: touch ~/yo-ui/styleguide/.nojekyll
       - run:
           name: Install and configure dependencies
           command: |
