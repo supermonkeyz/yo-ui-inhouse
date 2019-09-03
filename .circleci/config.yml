@@ -18,6 +18,13 @@ jobs:
       - run:
           name: Run styleguide
           command: yarn styleguide:build
+  guide-deploy:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: styleguide
       - run:
           name: Disable jekyll builds
           command: touch styleguide/.nojekyll
@@ -27,6 +34,10 @@ jobs:
             npm install gh-pages
             git config user.email "popbaby@qq.com"
             git config user.name "supermonkeyz"
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - add_ssh_keys:
           fingerprints:
             - "1f:f7:96:19:03:2f:8e:f3:82:e6:e5:b6:0b:1c:2d:be"
@@ -40,3 +51,9 @@ workflows:
   build:
     jobs:
       - guide-build
+      - guide-deploy:
+          requires:
+            - guide-build
+          filters:
+            branches:
+              only: master
