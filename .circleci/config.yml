@@ -18,16 +18,13 @@ jobs:
       - run:
           name: Run styleguide
           command: yarn styleguide:build
-      - persist_to_workspace:
-          root: docs/_build
-          paths: html
   guide-deploy:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - attach_workspace:
-          at: docs/_build
+          at: styleguide
       - run:
           name: Install and configure dependencies
           command: |
@@ -36,7 +33,7 @@ jobs:
             git config user.name "supermonkeyz"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist docs/_build/html
+          command: gh-pages --dist styleguide
 
 
 workflows:
