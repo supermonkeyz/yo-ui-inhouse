@@ -34,7 +34,7 @@ jobs:
           at: ~/yo-ui
       - run:
           name: Disable jekyll builds
-          command: touch ~/yo-ui/styleguide/.nojekyll
+          command: touch styleguide/.nojekyll
       - run:
           name: Install and configure dependencies
           command: |
