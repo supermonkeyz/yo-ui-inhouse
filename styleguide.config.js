@@ -8,18 +8,12 @@ module.exports = {
   renderRootJsx: path.join(__dirname, './styleguide.root.js'),
   sections: [
     {
-      name: 'Components',
-      sections: [
-        {
-          name: 'Basic',
-          components: [
-            './components/button/button.vue',
-            './components/spinner/spinner.vue'
-          ]
-        }
+      name: 'Basic',
+      components: [
+        './components/button/button.vue',
+        './components/spinner/spinner.vue'
       ],
       sectionDepth: 0
-      // components: 'src/components/**/[A-Z]*.vue'
     }
   ]
   // webpackConfig: {

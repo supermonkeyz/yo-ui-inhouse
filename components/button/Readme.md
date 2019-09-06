@@ -1,4 +1,4 @@
-## 基础用法
+## Basic use
 
 ```vue
 <template>
@@ -40,7 +40,7 @@ export default {
 </style>
 ```
 
-## 不可用态
+## Disable
 
 ```vue
 <template>
@@ -77,7 +77,7 @@ export default {
 </style>
 ```
 
-## 按钮尺寸
+## Sizes
 
 ```vue
 <template>
@@ -112,7 +112,7 @@ export default {
 </style>
 ```
 
-## 圆角按钮
+## Corner
 
 ```vue
 <template>
@@ -129,7 +129,7 @@ export default {
 </template>
 ```
 
-## 按钮充满
+## Block
 
 ```vue
 <template>
@@ -148,7 +148,7 @@ export default {
 </template>
 ```
 
-## 移动端开启hairline
+## Mobile hairline
 
 ```vue
 <template>
@@ -168,7 +168,7 @@ export default {
 </template>
 ```
 
-## 按钮图标
+## Button icon
 
 ```vue
 <template>

@@ -75,20 +75,31 @@ export default {
     },
     /**
      * Hairline in mobile devices.
-     * `Options: false`
+     * `Options: true false`
      */
     hairline: {
       type: Boolean,
       default: false
     },
+    /**
+     * Icon in button.
+     */
     icon: {
       type: String,
       default: ''
     },
+    /**
+     * Loading status.
+     * `Options: true false`
+     */
     loading: {
       type: Boolean,
       default: false
     },
+    /**
+     * Spinner type.
+     * `Options: iOS Android Windows`
+     */
     spinnerType: {
       type: String,
       default: 'iOS'

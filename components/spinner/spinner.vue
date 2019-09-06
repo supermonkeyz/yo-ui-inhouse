@@ -1,5 +1,5 @@
 <template lang="html">
-  <component :is="type" :class="$style.main" :style="spinnerColor"></component>
+  <component :is="type" :class="$style.main" :style="spinnerStyle"></component>
 </template>
 
 <script>
@@ -19,11 +19,23 @@ export default {
       type: String,
       default: 'iOS'
     },
+    /**
+     * The size of the spinner.
+     * `Options: css units value`
+     */
+    size: String,
+    /**
+     * The color of the spinner.
+     * `Options: css color value`
+     */
     color: String
   },
   computed: {
-    spinnerColor() {
-      return { color: this.color };
+    spinnerStyle() {
+      return {
+        color: this.color,
+        fontSize: this.size
+      };
     }
   }
 };
