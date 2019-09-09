@@ -95,6 +95,20 @@ export default {
       default: ''
     },
     /**
+     * Content vertical layout in button.
+     */
+    vertical: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Content reverse layout in button.
+     */
+    reverse: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * Loading status.
      * `Options: true false`
      */
@@ -109,14 +123,6 @@ export default {
     spinnerType: {
       type: String,
       default: 'iOS'
-    },
-    vertical: {
-      type: Boolean,
-      default: false
-    },
-    reverse: {
-      type: Boolean,
-      default: false
     }
   },
   methods: {

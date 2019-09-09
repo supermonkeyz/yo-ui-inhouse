@@ -25,7 +25,7 @@
 export default {
   data() {
     return {
-      kinds: ['primary', 'secondary', 'success', 'danger', 'default']
+      kinds: ['primary', 'secondary', 'success', 'danger', 'invert', 'default']
     };
   }
 };
@@ -190,7 +190,7 @@ export default {
 </div>
 </template>
 ```
-## Button reverse
+## Button inside reverse
 
 ```vue
 <template>
@@ -207,7 +207,7 @@ export default {
 </template>
 ```
 
-## Button vertical
+## Button inside vertical
 
 ```vue
 <template>

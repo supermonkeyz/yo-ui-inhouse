@@ -5,6 +5,7 @@
   --yo-color-secondary: #1b98e0;
   --yo-color-success: #37af79;
   --yo-color-danger: #ff1654;
+  --yo-color-invert: #f0f0f0;
   --yo-color-default: #333;
   /*base font-size*/
   --yo-base-font-size: 16;
@@ -17,7 +18,7 @@
 
 :root {
   /* buttons type */
-  --yo-general-color-schemes: primary, secondary, success, danger, default;
+  --yo-general-color-schemes: primary, secondary, success, danger, invert, default;
   /*generate colors for button schemes*/
   @each $scheme in (var(--yo-general-color-schemes)) {
   /* button line's hover color */
