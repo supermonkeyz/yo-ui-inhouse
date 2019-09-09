@@ -119,10 +119,10 @@ export default {
 <div>
   <p>
     <yo-button sort="line" kind="primary" round style="vertical-align: top">
-      喜欢
+      Like
     </yo-button>
     <yo-button sort="flat" kind="primary" round>
-      喜欢
+      Like
     </yo-button>
   </p>
 </div>
@@ -136,12 +136,12 @@ export default {
 <div>
   <p>
     <yo-button sort="line" kind="primary" fluid>
-      喜欢
+      Like
     </yo-button>
   </p>
   <p>
     <yo-button sort="line" kind="primary" fluid round>
-      喜欢
+      Like
     </yo-button>
   </p>
 </div>
@@ -155,13 +155,13 @@ export default {
 <div>
   <p>
     <yo-button sort="line" kind="primary" hairline>
-      喜欢
+      Like
     </yo-button>
     <yo-button sort="line" kind="default" hairline>
-      喜欢
+      Like
     </yo-button>
     <yo-button sort="line" kind="success" hairline round>
-      喜欢
+      Like
     </yo-button>
   </p>
 </div>
@@ -174,36 +174,57 @@ export default {
 <template>
 <div>
   <p>
-    <yo-button sort="line" kind="primary" icon="https://image.flaticon.com/icons/png/128/148/148836.png">
-      喜欢
+    <yo-button sort="line" kind="primary" icon="https://image.flaticon.com/icons/svg/291/291212.svg">
+      Like
     </yo-button>
-    <yo-button sort="line" kind="primary" size="l" icon="https://image.flaticon.com/icons/png/128/148/148836.png">
-      喜欢
+    <yo-button sort="line" kind="primary" size="l" icon="https://image.flaticon.com/icons/svg/291/291212.svg">
+      Like
+    </yo-button>
+    <yo-button sort="simple" kind="default" icon="https://image.flaticon.com/icons/svg/126/126495.svg">
+      Share
+    </yo-button>
+    <yo-button sort="simple" kind="default" size="l" icon="https://image.flaticon.com/icons/svg/126/126495.svg">
+      Share
     </yo-button>
   </p>
 </div>
 </template>
+```
+## Button reverse
 
-<script>
-export default {
-  data() {
-    return {
-      sizes: ['l', 'm', 's'],
-      names: {
-        l: 'large',
-        m: 'medium',
-        s: 'small'
-      }
-    };
-  }
-};
-</script>
+```vue
+<template>
+<div>
+  <p>
+    <yo-button sort="line" kind="default" icon="https://image.flaticon.com/icons/svg/126/126490.svg" reverse>
+      More
+    </yo-button>
+    <yo-button sort="simple" kind="default" icon="https://image.flaticon.com/icons/svg/126/126469.svg" reverse>
+      Share
+    </yo-button>
+  </p>
+</div>
+</template>
+```
 
-<style scoped>
-.button{
-  margin-right: 10px;
-}
-</style>
+## Button vertical
+
+```vue
+<template>
+<div>
+  <p>
+    <yo-button sort="simple" kind="default" icon="https://image.flaticon.com/icons/svg/126/126469.svg" vertical>
+      share
+    </yo-button>
+    <yo-button sort="simple" kind="default" icon="https://image.flaticon.com/icons/svg/126/126469.svg" vertical reverse>
+      share
+    </yo-button>
+    <yo-button sort="simple" kind="default" size="l" icon="https://image.flaticon.com/icons/svg/126/126469.svg" vertical>
+      share
+    </yo-button>
+  </p>
+</div>
+</template>
 ```
 
 ## Loading
@@ -224,7 +245,7 @@ export default {
       :disabled="loading"
       @click="follow"
     >
-      {{ followed ? '关注' : '加关注' }}
+      {{ followed ? 'Following' : 'Follow' }}
     </yo-button>
   </p>
 </div>

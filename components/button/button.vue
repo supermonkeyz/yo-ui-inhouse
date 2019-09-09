@@ -12,7 +12,13 @@
     @touchstart="() => {}"
     @click="clickHandle"
   >
-    <span :class="$style.wrap">
+    <span
+      :class="[
+        $style.wrap,
+        vertical && $style.vertical,
+        reverse && $style.reverse
+      ]"
+    >
       <img :src="icon" alt="icon" v-if="icon" :class="$style.icon" />
       <Spinner :type="spinnerType" :class="$style.icon" v-if="loading">
       </Spinner>
@@ -103,6 +109,14 @@ export default {
     spinnerType: {
       type: String,
       default: 'iOS'
+    },
+    vertical: {
+      type: Boolean,
+      default: false
+    },
+    reverse: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -127,6 +141,7 @@ export default {
   --yo-button-hover: 0.8;
   --yo-button-disabled: 0.5;
   --yo-button-trans-dur: 0.2s;
+  --yo-button-icon-gap: calc(1em * 4 / var(--yo-base-font-size));
 }
 
 .main {
@@ -141,6 +156,7 @@ export default {
   border-radius: var(--yo-button-border-raduis);
   position: relative;
   line-height: 1;
+  overflow: hidden;
 
   &::before {
     content: '';
@@ -153,7 +169,7 @@ export default {
     transition: all ease-in-out var(--yo-button-trans-dur);
     opacity: 0;
     pointer-events: none;
-    border-radius: inherit;
+    /* border-radius: inherit; */
   }
 
   &:active {
@@ -193,6 +209,18 @@ export default {
     justify-content: center;
     align-items: center;
     vertical-align: top;
+
+    &.vertical {
+      flex-direction: column;
+
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+    }
+
+    &.reverse {
+      flex-direction: row-reverse;
+    }
   }
 }
 
@@ -262,6 +290,21 @@ export default {
 }
 
 .icon + .content {
-  margin-left: calc(1em * 4 / var(--yo-base-font-size));
+  margin-left: var(--yo-button-icon-gap);
+
+  .vertical & {
+    margin: 0;
+    margin-top: var(--yo-button-icon-gap);
+  }
+
+  .reverse & {
+    margin: 0;
+    margin-right: var(--yo-button-icon-gap);
+  }
+
+  .vertical.reverse & {
+    margin: 0;
+    margin-bottom: var(--yo-button-icon-gap);
+  }
 }
 </style>
