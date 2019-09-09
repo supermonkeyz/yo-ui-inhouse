@@ -62,7 +62,7 @@ export default {
 export default {
   data() {
     return {
-      kinds: ['primary', 'secondary', 'success', 'danger', 'default']
+      kinds: ['primary', 'secondary', 'success', 'danger', 'invert', 'default']
     };
   }
 }
