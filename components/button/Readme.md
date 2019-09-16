@@ -277,3 +277,5 @@ export default {
 }
 </style>
 ```
+
+*Icons from [flaticon](https://www.flaticon.com)*
