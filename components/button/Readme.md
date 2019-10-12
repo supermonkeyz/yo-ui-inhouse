@@ -163,9 +163,42 @@ export default {
     <yo-button sort="line" kind="success" hairline round>
       Like
     </yo-button>
+    <yo-button sort="line" kind="success" hairline>
+      Like
+    </yo-button>
   </p>
 </div>
 </template>
+```
+
+## Border Radius
+```vue
+<template>
+<div>
+  <p>
+    <yo-button sort="line" kind="primary" hairline border-radius="9" class="button">
+      radius 9px
+    </yo-button>
+    <yo-button sort="line" kind="primary" border-radius="9" class="button">
+      radius 9px
+    </yo-button>
+    <yo-button sort="line" kind="primary" hairline border-radius="0.5rem" class="button">
+      radius 0.5rem
+    </yo-button>
+    <yo-button sort="flat" kind="primary" hairline border-radius="0.25rem" class="button">
+      radius 0.25rem
+    </yo-button>
+  </p>
+</div>
+</template>
+
+<style scoped>
+.button{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+</style>
 ```
 
 ## Button icon

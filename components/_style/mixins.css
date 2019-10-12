@@ -14,50 +14,64 @@
     position: relative;
     $(borderType): 1px $(borderStyle) transparent;
 
+    & .inset {
+      top: -1Px;
+      right: -1Px;
+      bottom: -1Px;
+      left: -1Px;
+    }
+
     &::after {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      top: -1Px;
+      left: -1Px;
       pointer-events: none;
       z-index: 1;
       box-sizing: border-box;
       $(borderType): 1px $(borderStyle) $borderColor;
+      border-radius: inherit;
     }
   }
 
   [data-dpr='Adr@2'] .$(className)& {
     &::after {
-      width: 200%;
-      height: 200%;
+      width: calc(200% + 4Px);
+      height: calc(200% + 4Px);
       transform: scale(0.5, 0.5) translate3d(-50%, -50%, 0);
     }
   }
 
   [data-dpr='Adr@3'] .$(className)& {
     &::after {
-      width: 300%;
-      height: 300%;
+      width: calc(300% + 6Px);
+      height: calc(300% + 6Px);
       transform: scale(0.33333, 0.33333) translate3d(-100%, -100%, 0);
     }
   }
 }
 
+@define-mixin hairline-iOS $borderType, $borderStyle, $borderColor: currentColor, $className: hairline {
+  $(borderType): 1px $(borderStyle) $(borderColor);
+
+  [data-dpr='iOS@2'] .$(className)& {
+    border-width: calc(1px / 2);
+  }
+
+  [data-dpr='iOS@3'] .$(className)& {
+    border-width: calc(1px * 414 / 1080);
+  }
+}
+
 @define-mixin hairline-border-radius $borderRadius: 0, $className: hairline {
   [data-dpr='Adr@2'] .$(className)& {
-    &::after {
-      @if $borderRadius != 0 {
-        border-radius: calc($(borderRadius) * 2);
-      }
+    @if $borderRadius != 0 {
+      border-radius: calc($(borderRadius) * 2);
     }
   }
   [data-dpr='Adr@3'] .$(className)& {
-    &::after {
-      @if $borderRadius != 0 {
-        border-radius: calc($(borderRadius) * 3);
-      }
+    @if $borderRadius != 0 {
+      border-radius: calc($(borderRadius) * 3);
     }
   }
 }

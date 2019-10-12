@@ -9,9 +9,11 @@
       round && $style.round,
       fluid && $style.fluid
     ]"
+    :style="buttonRaduis()"
     @touchstart="() => {}"
     @click="clickHandle"
   >
+    <div :class="$style.inset" :style="buttonRaduis('inset')"></div>
     <span
       :class="[
         $style.wrap,
@@ -31,6 +33,8 @@
 </template>
 
 <script>
+import Device from '../_util/device';
+import cssUnit from '../_util/cssUnit';
 import Spinner from '../spinner/spinner';
 
 export default {
@@ -123,9 +127,39 @@ export default {
     spinnerType: {
       type: String,
       default: 'iOS'
+    },
+    borderRadius: {
+      type: [String, Number],
+      validator: value => cssUnit(value)
     }
   },
   methods: {
+    buttonRaduis(type) {
+      if (!this.borderRadius) return null;
+      let value;
+      const ratio =
+        this.sort === 'line' && this.hairline && Device.os.os === 'Adr'
+          ? Device.dpr
+          : 1;
+      const arr = this.borderRadius.match(/[\d.]+|\D+/g);
+      if (!isNaN(arr[0])) {
+        if (type === 'inset') {
+          if (!arr[1] || arr[1] === 'px') {
+            value = (this.sort === 'line' ? arr[0] - 1 : arr[0]) + 'px';
+          } else {
+            value =
+              this.sort === 'line'
+                ? `calc(${this.borderRadius} - 1px)`
+                : this.borderRadius;
+          }
+        } else {
+          value = arr[0] * ratio + (arr[1] || 'px');
+        }
+      }
+      return {
+        borderRadius: value
+      };
+    },
     clickHandle() {
       /**
        * Click event.
@@ -162,24 +196,9 @@ export default {
   border-radius: var(--yo-button-border-raduis);
   position: relative;
   line-height: 1;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: var(--yo-index-flow);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transition: all ease-in-out var(--yo-button-trans-dur);
-    opacity: 0;
-    pointer-events: none;
-    /* border-radius: inherit; */
-  }
 
   &:active {
-    &::before {
+    & .inset {
       opacity: 1;
     }
   }
@@ -192,7 +211,7 @@ export default {
   @media (hover) {
     &:not(:disabled):hover,
     &:focus {
-      &::before {
+      & .inset {
         opacity: 1;
       }
     }
@@ -201,32 +220,55 @@ export default {
   &.round {
     border-radius: var(--yo-button-round);
     @mixin hairline-border-radius var(--yo-button-round);
+    & .inset {
+      border-radius: var(--yo-button-round);
+    }
   }
 
   &.fluid {
     width: 100%;
   }
+}
 
-  & .wrap {
-    position: relative;
-    z-index: var(--yo-index-flow);
-    pointer-events: none;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: top;
+.inset {
+  position: absolute;
+  z-index: var(--yo-index-flow);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: all ease-in-out var(--yo-button-trans-dur);
+  opacity: 0;
+  pointer-events: none;
 
-    &.vertical {
-      flex-direction: column;
+  .line & {
+    border-radius: calc(var(--yo-button-border-raduis) - 1px);
+  }
 
-      &.reverse {
-        flex-direction: column-reverse;
-      }
-    }
+  .flat & {
+    border-radius: var(--yo-button-border-raduis);
+  }
+}
+
+.wrap {
+  position: relative;
+  z-index: var(--yo-index-flow);
+  pointer-events: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: top;
+
+  &.vertical {
+    flex-direction: column;
 
     &.reverse {
-      flex-direction: row-reverse;
+      flex-direction: column-reverse;
     }
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
   }
 }
 
@@ -243,7 +285,7 @@ export default {
       border-color: var(--yo-color-$(val)-border);
       @mixin hairline-border-color var(--yo-color-$(val)-border);
 
-      &::before {
+      & .inset {
         background: var(--yo-color-$(val)-hover);
       }
     }
@@ -255,14 +297,14 @@ export default {
   color: var(--yo-color-light);
   & .wrap {
     /*button line is larger than flat line's border width, just fix it inset*/
-    @mixin hairline border, solid, transparent;
+    @mixin hairline-iOS border, solid, transparent;
   }
   /* color from ./_style/const.css */
   @each $val in (var(--yo-general-color-schemes)) {
     &.$(val) {
       background: var(--yo-general-$(val));
 
-      &::before {
+      & .inset {
         background: var(--yo-general-$(val)-hover);
       }
     }

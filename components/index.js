@@ -10,7 +10,7 @@ const components = {
 
 const YoUI = {
   install(Vue, option = {}) {
-    Vue.prototype.$_yo_divice = new Device(option.device);
+    Device.init(option.device);
     Object.keys(components).forEach(key => {
       Vue.component(components[key].name, components[key]);
     });
