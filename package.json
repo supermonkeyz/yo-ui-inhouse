@@ -35,7 +35,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "inquirer": "^6.5.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "ora": "^3.4.0",
     "postcss-at-rules-variables": "^0.1.8",
     "postcss-color-mod-function": "^3.0.3",
